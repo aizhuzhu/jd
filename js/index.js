@@ -2,7 +2,7 @@
 * @Author: john
 * @Date:   2017-02-26 08:57:41
 * @Last Modified by:   john
-* @Last Modified time: 2017-02-26 17:32:34
+* @Last Modified time: 2017-03-02 10:20:09
 */
 
 'use strict';
@@ -84,7 +84,6 @@ $(function(){
         	setTranslateX(currentX);
         })
         imgbox[0].addEventListener("touchend", function(e){
-        	clearInterval(timer);
         	if(ismove&&(Math.abs(distanceX)>w/3)){
         		if (distanceX>0) {
         			index--;
@@ -107,31 +106,29 @@ $(function(){
         		setTranslateX(-index*w);
         		$(".jd_lunbo ul:last-child li").eq(index-1).addClass('now').siblings('li').removeClass('now');
         	}
-
+            
         })
-
-        // 重置
-        startX=0;
-        moveX=0;
-        distanceX=0;
-        ismove=false;
+        var startX=0;
+        var moveX=0;
+        var distanceX=0;
+        var ismove=false;
         clearInterval(timer);
-        var timer=setInterval(function(){
-    		index++;
-    		addtransition();
-    		setTranslateX(-index*w);
-    		if(index>=9){
-        	index=1;
-        	removetransition();
-        	setTranslateX(-index*w);
-        	}else if(index<=0){
+        var timer1=setInterval(function(){
+            index++;
+            addtransition();
+            setTranslateX(-index*w);
+            if(index>=9){
+            index=1;
+            removetransition();
+            setTranslateX(-index*w);
+            }else if(index<=0){
             index=8;
-        	removetransition();
-        	setTranslateX(-index*w);
-        	}
+            removetransition();
+            setTranslateX(-index*w);
+            }
             $(".jd_lunbo ul:last-child li").eq(index-1).addClass('now').siblings('li').removeClass('now');
-    		
-    	},3000);
+            
+        },3000);
     })();	
     // 倒计时函数
     (function timego(){
